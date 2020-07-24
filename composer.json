@@ -1,0 +1,14 @@
+{
+    "name": "gurvan/spotify_tool",
+    "description": "Small spotify tools",
+    "authors": [
+        {
+            "name": "gurvan89",
+            "email": "g.giboire@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}

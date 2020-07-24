@@ -1,0 +1,7 @@
+#In order to redirect all request to index.php
+#I have put my apache config in config/.
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]
