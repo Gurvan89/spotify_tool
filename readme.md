@@ -1,5 +1,6 @@
 # Small spotify tools
-
+## @Author
+Gurvan g.giboire@gmail.com
 ## Intro 
 This is a small spotify tools. With it, you can:
 - Login to your spotify account 
