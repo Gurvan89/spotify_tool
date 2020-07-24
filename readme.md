@@ -26,7 +26,7 @@ After that you have to setting up the application with the **./autoload.php**
 
 - Setting up the client id and secret of spotify
 
-- Setting up your host (according to this host you have to modify the callback on your spotify dev account)
+- Setting up your host -> according to this host you have to modify the callback on your spotify dev account (http://your_host/callback)
 
 You also need to install composer and run composer install to install guzzle dependancy. I use guzzle for my API request.
 
