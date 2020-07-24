@@ -27,6 +27,17 @@ After that you have to setting up the application with the **./autoload.php**
 
 - Setting up your host (according to this host you have to modify the callback on your spotify dev account)
 
-You also need to install composer and run composer install.
+You also need to install composer and run composer install to install guzzle dependancy. I use guzzle for my API request.
 
 After that you can type in your host in your browser and enjoy.
+
+## Project tree
+```bash
+├── config #The config apache and script sql
+├── src # Code source
+│   ├── Database # Database access 
+│   ├── Entity # Entity image of database table
+│   ├── SpotifyAccess # Authentication and access to spotify api
+│   └── Views #All views of the application
+│       └── icons
+```
