@@ -34,6 +34,7 @@ After that you can type in your host in your browser and enjoy.
 
 ## Project tree
 ```bash
+├── app_screenshot #Screenshot overview
 ├── config #The config apache and script sql
 ├── src # Code source
 │   ├── Database # Database access 
@@ -42,3 +43,21 @@ After that you can type in your host in your browser and enjoy.
 │   └── Views #All views of the application
 │       └── icons
 ```
+
+## Database
+
+I've chosen to create a database to handle user and session. By this way I avoid to connect to authentication API every request. I've created two table user and token. I could have created just one table but I wanted to show you one unidirectionnal relation.
+
+## Some screenshots
+
+### Login
+![alt text](app_screenshot/login.png)
+
+### Playlists
+![alt text](app_screenshot/playlists.png)
+
+### Create a playlist
+![alt text](app_screenshot/createPlaylist.png)
+
+### Search a track
+![alt text](app_screenshot/search.png)
