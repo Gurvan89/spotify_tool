@@ -2,7 +2,7 @@
 
 namespace SpotifyApp\Database;
 
-include_once 'MySqlDb.php';
+include_once 'AbstractDabase.php';
 
 use Exception;
 use PDOException;
@@ -12,11 +12,11 @@ use SpotifyApp\Entity\User;
 /**
  * To connect user to database
  */
-class UserDatabase extends MySqlDb
+class UserDatabase extends AbstractDabase
 {
-    function __construct()
+    function __construct(SqlConnector $sqlConnector)
     {
-        parent::__construct();
+        parent::__construct($sqlConnector);
     }
 
     /**

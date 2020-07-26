@@ -5,9 +5,8 @@ namespace SpotifyApp\SpotifyAccess;
 use DateTime;
 use Exception;
 use GuzzleHttp\Client;
-use SpotifyApp\Database\TokenDatabase;
+use SpotifyApp\Database\DatabaseFactory;
 use SpotifyApp\Entity\SpotifyResponseToken;
-use SpotifyApp\Database\UserDatabase;
 use SpotifyApp\Entity\User;
 
 /**
@@ -66,11 +65,11 @@ class SpotifyAuth
      */
     private string $baseUrl;
 
-    public function __construct()
+    public function __construct(string $clientId, string $clientSecret, string $baseUrl)
     {
-        $this->clientId = $_ENV["CLIENT_ID"];
-        $this->clientSecret = $_ENV["CLIENT_SECRET"];
-        $this->baseUrl=$_ENV["BASE_URL"];
+        $this->clientId = $clientId;
+        $this->clientSecret = $clientSecret;
+        $this->baseUrl = $baseUrl;
         $this->clientGuzzle = new Client(
             [
                 "base_uri" => self::SPOTIFY_BASE_URI
@@ -90,7 +89,7 @@ class SpotifyAuth
             [
                 "response_type" => "code",
                 "client_id" => $this->clientId,
-                "redirect_uri" => $this->baseUrl.self::REDIRECT_URI,
+                "redirect_uri" => $this->baseUrl . self::REDIRECT_URI,
                 "scope" => self::SCOPES
             ]
         );
@@ -107,7 +106,7 @@ class SpotifyAuth
      */
     public function refrechToken(string $email): void
     {
-        $userDb = new UserDatabase();
+        $userDb = DatabaseFactory::getUserDb();
         $userFromDb = $userDb->getByEmailWithToken($email);
 
         $body = [
@@ -132,7 +131,7 @@ class SpotifyAuth
         $body = [
             "grant_type" => "authorization_code",
             "code" => $params["code"],
-            "redirect_uri" => $this->baseUrl.self::REDIRECT_URI,
+            "redirect_uri" => $this->baseUrl . self::REDIRECT_URI,
         ];
         return $this->handleToken($body);
     }
@@ -148,7 +147,7 @@ class SpotifyAuth
     {
         if ($email === null)
             return false;
-        $userDb = new UserDatabase();
+        $userDb = DatabaseFactory::getUserDb();
         $user = $userDb->getByEmailWithToken($email);
         if (is_null($user)) {
             return false;
@@ -206,8 +205,8 @@ class SpotifyAuth
         //create a new user with the information from spotify api
         $user = new User($sApi->getUserInformation(), $token);
         //instantiate db access 
-        $userDb = new UserDatabase();
-        $tokenDb = new TokenDatabase();
+        $userDb = DatabaseFactory::getUserDb();
+        $tokenDb = DatabaseFactory::getTokenDb();
         //Get user in db to check if already exists
         $userFromDb = $userDb->getByEmailWithToken($user->getEmail());
         //If user exists in db -> update if not insert

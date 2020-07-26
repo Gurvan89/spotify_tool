@@ -27,12 +27,12 @@ class SpotifyResponseToken
             $this->token = $response["token"];
         if (isset($response["expire"]))
             $this->expire = new Datetime($response["expire"]);
-        if (isset($response["expires_in"])){
+        if (isset($response["expires_in"])) {
             $date = new DateTime();
-            $date->add(new DateInterval('PT'.$response["expires_in"].'S'));
+            $date->add(new DateInterval('PT' . $response["expires_in"] . 'S'));
             $this->expire = $date;
         }
-            
+
         if (isset($response["token_type"]))
             $this->type = $response["token_type"];
         if (isset($response["scope"]))
@@ -43,7 +43,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of refreshToken
-     */ 
+     */
     public function getRefreshToken()
     {
         return $this->refreshToken;
@@ -53,7 +53,7 @@ class SpotifyResponseToken
      * Set the value of refreshToken
      *
      * @return  self
-     */ 
+     */
     public function setRefreshToken($refreshToken)
     {
         $this->refreshToken = $refreshToken;
@@ -63,7 +63,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of scope
-     */ 
+     */
     public function getScope()
     {
         return $this->scope;
@@ -73,7 +73,7 @@ class SpotifyResponseToken
      * Set the value of scope
      *
      * @return  self
-     */ 
+     */
     public function setScope($scope)
     {
         $this->scope = $scope;
@@ -83,7 +83,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of type
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -93,7 +93,7 @@ class SpotifyResponseToken
      * Set the value of type
      *
      * @return  self
-     */ 
+     */
     public function setType($type)
     {
         $this->type = $type;
@@ -103,7 +103,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of expire
-     */ 
+     */
     public function getExpire()
     {
         return $this->expire;
@@ -113,7 +113,7 @@ class SpotifyResponseToken
      * Set the value of expire
      *
      * @return  self
-     */ 
+     */
     public function setExpire($expire)
     {
         $this->expire = $expire;
@@ -123,7 +123,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of token
-     */ 
+     */
     public function getToken()
     {
         return $this->token;
@@ -133,7 +133,7 @@ class SpotifyResponseToken
      * Set the value of token
      *
      * @return  self
-     */ 
+     */
     public function setToken($token)
     {
         $this->token = $token;
@@ -143,7 +143,7 @@ class SpotifyResponseToken
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -153,7 +153,7 @@ class SpotifyResponseToken
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
