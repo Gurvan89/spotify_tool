@@ -11,7 +11,7 @@ use PDOException;
 /**
  * Connector of mysql db 
  */
-abstract class AbstractDabase implements InterfaceDatabase
+abstract class AbstractDatabase implements InterfaceDatabase
 {
 
     protected PDO $db;
