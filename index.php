@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/autoload.php';
 
-use SpotifyApp\Database\UserDatabase;
+use SpotifyApp\Database\DatabaseFactory;
 use SpotifyApp\SpotifyAccess\SpotifyApi;
 use SpotifyApp\SpotifyAccess\SpotifyAuth;
 
@@ -12,7 +12,11 @@ session_start();
 $request = parse_url($_SERVER['REQUEST_URI']);
 
 //Instantiate spotify authentication
-$sa = new SpotifyAuth();
+$sa = new SpotifyAuth(
+    $_ENV["CLIENT_ID"],
+    $_ENV["CLIENT_SECRET"],
+    $_ENV["BASE_URL"]
+);
 
 //If the session doesn't have email, it's because  it's not initialized yet
 // Exception for callback and login because it's the process to initialize the session
@@ -122,7 +126,7 @@ switch ($request["path"]) {
 function getSpotifyApi(string $email): SpotifyApi
 {
     //Class to provide user from db
-    $userDb = new UserDatabase();
+    $userDb = DatabaseFactory::getUserDb();
     //get user with spotify token by email from own db
     $user = $userDb->getByEmailWithToken($email);
     //instantiate the class Spotify api in order to access of spotify api service
